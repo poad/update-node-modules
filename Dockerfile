@@ -2,6 +2,8 @@ FROM buildpack-deps:focal-curl
 
 LABEL maintainer="Kenji Saito<ken-yo@mbr.nifty.com>"
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 RUN apt-get update -qq \
  && apt-get install -qqy --no-install-recommends \
        python3 \
