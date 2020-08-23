@@ -1,0 +1,16 @@
+name: 'Update the node modules'
+description: 'Updates node modules via GitHub Actions.'
+author: 'poad <ken-yo@mbr.nifty.com>'
+branding:
+  icon: 'terminal'
+  color: 'yellow'
+inputs:
+  yarn:
+    description: 'When use the yarn, then true'
+    default: 'false'
+  path:
+    description: '.'
+    default: './'
+runs:
+  using: 'docker'
+  image: './Dockerfile'
