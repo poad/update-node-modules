@@ -32,6 +32,9 @@ function main() {
         npm install --only=dev ${dev_modules}
         npm install ${modules}
 	fi
+
+    # To solve the problem of not being able to delete the node_modules directory
+    rm -rf node_modules
 }
 
 main
