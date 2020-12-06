@@ -11,6 +11,9 @@ inputs:
   path:
     description: '.'
     default: './'
+  debug:
+    description: 'When logging debug level, then true'
+    default: 'false'
 runs:
   using: 'docker'
   image: './Dockerfile'

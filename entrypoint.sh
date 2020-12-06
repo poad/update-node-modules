@@ -3,6 +3,9 @@
 set -eu
 
 function main() {
+    if [ "${INPUT_DEBUG}" == "true" ]; then
+        set -x
+    fi
     if [ -d "${INPUT_PATH}" ]; then
     	cd ${INPUT_PATH}
     else
