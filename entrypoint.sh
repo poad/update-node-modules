@@ -20,17 +20,35 @@ function main() {
     fi
     # parse package.json
     dev_modules=$(echo -n $(cat package.json | jq -r ".devDependencies | to_entries | .[].key"))
-    echo ${dev_modules}
+    echo -e -n "dev modules: ${dev_modules}\n"
 
     modules=$(echo -n $(cat package.json | jq -r ".dependencies | to_entries | .[].key"))
     echo ${modules}
+    echo -e -n "modules: ${modules}\n"
 
     if [ "${INPUT_YARN}" == "true" ]; then
-        yarn add --dev ${dev_modules}
-        yarn add ${modules}
+        if [ -n "${dev_modules}" ]; then
+            yarn add --dev ${dev_modules}
+        else
+            echo "Skip the dev module update"
+        fi
+        if [ -n "${dev_modules}" ]; then
+            yarn add ${modules}
+        else
+            echo "Skip the module update"
+        fi
     else
-        npm install --only=dev ${dev_modules}
-        npm install ${modules}
+        npm update
+        if [ -n "${dev_modules}" ]; then
+            npm install --only=dev ${dev_modules}
+        else
+            echo "Skip the dev module update"
+        fi
+        if [ -n "${dev_modules}" ]; then
+            npm install ${modules}
+        else
+            echo "Skip the module update"
+        fi
 	fi
 
     # To solve the problem of not being able to delete the node_modules directory
