@@ -2,6 +2,9 @@
 
 set -eu
 
+HUSKY_SKIP_INSTALL_ORG=${HUSKY_SKIP_INSTALL}
+export HUSKY_SKIP_INSTALL=1
+
 function main() {
     if [ "${INPUT_DEBUG}" == "true" ]; then
         set -x
@@ -59,3 +62,9 @@ function main() {
 }
 
 main
+
+if [ -n ${HUSKY_SKIP_INSTALL_ORG} {
+    export HUSKY_SKIP_INSTALL=${HUSKY_SKIP_INSTALL_ORG}
+} else {
+    unset HUSKY_SKIP_INSTALL
+}
