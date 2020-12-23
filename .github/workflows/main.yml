@@ -28,3 +28,18 @@ jobs:
         debug: true
         path: ./test
 
+    - name: update and test
+      env:
+        HUSKY_SKIP_INSTALL: 0
+      uses: './'
+      with:
+        yarn: true
+        debug: true
+        path: ./test
+
+    - name: update and test
+      uses: './'
+      with:
+        yarn: true
+        debug: true
+        path: ./test

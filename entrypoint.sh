@@ -2,8 +2,8 @@
 
 set -eu
 
-HUSKY_SKIP_INSTALL_ORG=${HUSKY_SKIP_INSTALL}
-export HUSKY_SKIP_INSTALL=1
+HUSKY_SKIP_INSTALL_ORG="${HUSKY_SKIP_INSTALL:+1}"
+export HUSKY_SKIP_INSTALL="1"
 
 function main() {
     if [ "${INPUT_DEBUG}" == "true" ]; then
