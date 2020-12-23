@@ -63,8 +63,8 @@ function main() {
 
 main
 
-if [ -n ${HUSKY_SKIP_INSTALL_ORG} {
+if [ -n ${HUSKY_SKIP_INSTALL_ORG} ]; then
     export HUSKY_SKIP_INSTALL=${HUSKY_SKIP_INSTALL_ORG}
-} else {
+else
     unset HUSKY_SKIP_INSTALL
-}
+fi

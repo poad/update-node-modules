@@ -1,4 +1,4 @@
-name: Hadlint
+name: Hadlint / Test
  
 on:
   pull_request:
@@ -9,6 +9,22 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - name: Hadolint
       uses: brpaz/hadolint-action@master
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: debug
+      run: ls
+    - name: update and test
+      env:
+        HUSKY_SKIP_INSTALL: 1
+      uses: './'
+      with:
+        yarn: true
+        debug: true
+        path: ./test
+
