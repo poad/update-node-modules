@@ -2,9 +2,9 @@
 
 Updates the node modules by package.json with jq.
 
-## Usage 
+## Usage
 
-```
+```$yaml
 - uses: poad/update-node-modules
 　with:
     # path to package.json

@@ -1,45 +1,84 @@
-name: Hadlint / Test
+name: Test
  
 on:
   pull_request:
     branches:
       - main
 
+  workflow_dispatch:
+
 jobs:
-  lint:
+  build-lint:
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
-    - name: Hadolint
-      uses: brpaz/hadolint-action@master
 
-  test:
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: build
+      run: |
+        yarn install
+        yarn lint --fix
+        yarn build
+        yarn test
+
+  action-test:
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+        args: [
+          {
+            'yarn': 'false', 'path': './tests/package-test.json'
+          },
+          {
+            'yarn': 'true', 'path': './tests/package-test.json'
+          },
+        ]
+
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
-    - name: debug
-      run: ls
-    - name: update and test
-      env:
-        HUSKY_SKIP_INSTALL: 1
-      uses: './'
-      with:
-        yarn: true
-        debug: true
-        path: ./test
 
-    - name: update and test
-      env:
-        HUSKY_SKIP_INSTALL: 0
-      uses: './'
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
       with:
-        yarn: true
-        debug: true
-        path: ./test
+        node-version: ${{ matrix.node-version }}
 
+    - name: prepare
+      run: |
+        TEMP=$(mktemp -d);
+        PKG_JSON=${TEMP}/package.json
+        cp -pR ${{ matrix.args.path }} ${PKG_JSON}
+        echo "TEMP=${TEMP}" >> $GITHUB_ENV
+        echo "PKG_JSON=${PKG_JSON}" >> $GITHUB_ENV
+        lock_file=package-lock.json
+        if [ ${{ matrix.args.yarn }} = 'true' ]; then
+          lock_file=yarn.lock
+        fi
+        echo "LOCK_FILE=${TEMP}/${lock_file}" >> $GITHUB_ENV
+    
     - name: update and test
       uses: './'
       with:
-        yarn: true
+        yarn: ${{ matrix.args.yarn }}
         debug: true
-        path: ./test
+        path: ${{ env.PKG_JSON }}
+
+    - name: verify test result
+      env:
+        LOCK_FILE: ${{ env.LOCK_FILE }}
+      run: |
+        test -e "${LOCK_FILE}" || exit 1 && \
+        pkg_json=$(cat ${{ env.PKG_JSON }}) && \
+        echo "${pkg_json}" && \
+        test $(echo "${pkg_json}" | jq -cr ".devDependencies.typescript") != '^4.3.2' || exit 1  && \
+        test $(echo "${pkg_json}" | jq -cr ".dependencies.jest") != '26.6.3' || exit 1
