@@ -5,7 +5,7 @@ Updates the node modules by package.json with jq.
 ## Usage
 
 ```$yaml
-- uses: poad/update-node-modules
+- uses: poad/update-node-modules@v1.0.4
 　with:
     # path to package.json
     # Default: ./
