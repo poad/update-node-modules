@@ -6,14 +6,14 @@ branding:
   color: 'yellow'
 inputs:
   yarn:
-    description: 'When use the yarn, then true'
+    description: (Optional) When use the yarn, then true
     default: 'false'
   path:
-    description: '.'
+    description: (Optional) path of package.json
     default: './'
   debug:
-    description: 'When logging debug level, then true'
+    description: (Optional) When logging debug level, then true
     default: 'false'
 runs:
-  using: 'docker'
-  image: './Dockerfile'
+  using: 'node12'
+  main: 'dist/main.js'
