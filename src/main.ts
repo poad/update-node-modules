@@ -70,14 +70,23 @@ const getBooleanInput = (params: GetInputParams<boolean>): boolean => {
   return (value || params.defaultValue) || false;
 };
 
+// const getMultilineInput = (params: GetInputParams<string[]>): string[] => {
+//   const value = core.getMultilineInput(params.name, params.options);
+//   return (value || params.defaultValue) || ([] as string[]);
+// };
+
 async function run(): Promise<void> {
   const yarn: boolean = getBooleanInput({ name: 'yarn', options: { required: false } });
   const targetPath = getInput({ name: 'path', options: { required: false }, defaultValue: './package.json' })!;
   const debug: boolean = getBooleanInput({ name: 'debug', options: { required: false } });
+  const ignoreStr = getInput({ name: 'ignore', options: { required: false }, defaultValue: '[]' });
 
   core.info(`yarn: ${yarn}`);
   core.info(`targetPath: ${targetPath}`);
   core.info(`debug: ${debug}`);
+  core.info(`ignore: ${ignoreStr}`);
+
+  const ignore: string[] = ignoreStr !== undefined ? JSON.parse(ignoreStr) : [];
 
   if (!fs.existsSync(targetPath)) {
     throw new Error(`No such file ${targetPath}.`);
@@ -119,21 +128,73 @@ async function run(): Promise<void> {
     },
   ).toString().trim();
 
+  core.debug(JSON.stringify(ignore));
+
+  const removeArgs = [
+    Object.keys(devDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1).length > 0
+      ? option.remove.devDependencies.concat(
+        Object.keys(devDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1)
+          .map((pkg) => `${pkg}@${devDependencies![pkg]}`),
+      ) : [],
+    Object.keys(peerDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1).length > 0
+      ? option.remove.peerDependencies.concat(
+        Object.keys(peerDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1)
+          .map((pkg) => `${pkg}@${devDependencies![pkg]}`),
+      ) : [],
+    Object.keys(optionalDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1).length > 0
+      ? option.remove.optionalDependencies.concat(
+        Object.keys(optionalDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1)
+          .map((pkg) => `${pkg}@${devDependencies![pkg]}`),
+      ) : [],
+    Object.keys(dependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1).length > 0
+      ? option.remove.dependencies.concat(
+        Object.keys(dependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1)
+          .map((pkg) => `${pkg}@${devDependencies![pkg]}`),
+      ) : [],
+  ].filter((args) => args.length > 0);
+
+  const reinstallArgs = [
+    Object.keys(devDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1).length > 0
+      ? option.install.devDependencies.concat(
+        Object.keys(devDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1)
+          .map((pkg) => `${pkg}@${devDependencies![pkg]}`),
+      ) : [],
+    Object.keys(peerDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1).length > 0
+      ? option.install.peerDependencies.concat(
+        Object.keys(peerDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1)
+          .map((pkg) => `${pkg}@${devDependencies![pkg]}`),
+      ) : [],
+    Object.keys(optionalDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1).length > 0
+      ? option.install.optionalDependencies.concat(
+        Object.keys(optionalDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1)
+          .map((pkg) => `${pkg}@${devDependencies![pkg]}`),
+      ) : [],
+    Object.keys(dependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1).length > 0
+      ? option.install.dependencies.concat(
+        Object.keys(dependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) !== -1)
+          .map((pkg) => `${pkg}@${devDependencies![pkg]}`),
+      ) : [],
+  ].filter((args) => args.length > 0);
+
   const upgradeArgs = [
-    option.install.devDependencies.concat(
-      Object.keys(devDependencies || {}),
-    ),
-    option.install.peerDependencies.concat(
-      Object.keys(peerDependencies || {}),
-    ),
-    option.install.peerDependencies.concat(
-      Object.keys(optionalDependencies || {}),
-    ),
-    option.install.peerDependencies.concat(
-      Object.keys(dependencies || {}),
-    ),
+    Object.keys(devDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) === -1).length > 0
+      ? option.install.devDependencies.concat(
+        Object.keys(devDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) === -1),
+      ) : [],
+    Object.keys(peerDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) === -1).length > 0
+      ? option.install.peerDependencies.concat(
+        Object.keys(peerDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) === -1),
+      ) : [],
+    Object.keys(optionalDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) === -1).length > 0
+      ? option.install.optionalDependencies.concat(
+        Object.keys(optionalDependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) === -1),
+      ) : [],
+    Object.keys(dependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) === -1).length > 0
+      ? option.install.dependencies.concat(
+        Object.keys(dependencies || {}).filter((pkg) => ignore.findIndex((i) => i === pkg) === -1),
+      ) : [],
     yarn === true ? ['upgrade'] : ['update'],
-  ];
+  ].filter((args) => args.length > 0);
 
   childProcess.execFileSync(
     command,
@@ -146,9 +207,10 @@ async function run(): Promise<void> {
   );
 
   upgradeArgs
+    .filter((args) => args.length > 0)
     .forEach((args) => {
       if (debug) {
-        core.debug(`command: ${JSON.stringify([command].concat(args), null, 2)}`);
+        core.debug(`command: ${JSON.stringify([command].concat(args))}`);
       }
       childProcess.execFileSync(
         command,
@@ -159,6 +221,30 @@ async function run(): Promise<void> {
           shell: false,
         },
       );
+    });
+
+  [
+    removeArgs,
+    reinstallArgs,
+  ]
+    .forEach((argsList) => {
+      argsList
+        .forEach((args) => {
+          if (debug) {
+            core.debug(`command: ${JSON.stringify([command].concat(args))}`);
+          }
+          // if (args.length > 0) {
+          //   childProcess.execFileSync(
+          //     command,
+          //     args,
+          //     {
+          //       cwd: workDir,
+          //       windowsHide: true,
+          //       shell: false,
+          //     },
+          //   );
+          // }
+        });
     });
 }
 
