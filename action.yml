@@ -14,6 +14,9 @@ inputs:
   debug:
     description: (Optional) When logging debug level, then true
     default: 'false'
+  ignore:
+    description: (Optional) ignore update module names type
+    default: '[]'
 runs:
   using: 'node12'
   main: 'dist/main.js'

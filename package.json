@@ -1,6 +1,6 @@
 {
   "name": "update-node-modules",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "./dist/main.js",
   "repository": "https://github.com/poad/update-node-modules.git",
   "author": "Kenji Saito <ken-yo@mbr.nifty.com>",

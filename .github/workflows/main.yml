@@ -8,6 +8,23 @@ on:
   workflow_dispatch:
 
 jobs:
+  configure:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: enable auto merge test (for Pull request)
+      if: github.event_name == 'pull_request'
+      env:
+        GITHUB: $${{  toJSON(github) }}
+      uses: poad/github-pull-request-auto-merge-enable-action@v1.0.0
+      with:
+        pull_request_id: ${{ github.event.pull_request.node_id }}
+        github_token: ${{ secrets.PERSONAL_TOKEN_FOR_GITHUB_ACTIONS }}
+        repository:  ${{ github.event.repository.name }}
+        owner: ${{ github.repository_owner }}
+        merge_method: SQUASH
+
+
   build-lint:
     strategy:
       matrix:
@@ -36,11 +53,19 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
         args: [
           {
-            'yarn': 'false', 'path': './tests/package-test.json'
+            'yarn': 'false', 'path': './tests/package-test.json', 'ignore': '[]'
           },
           {
-            'yarn': 'true', 'path': './tests/package-test.json'
+            'yarn': 'true', 'path': './tests/package-test.json', 'ignore': '[]'
           },
+          {
+            'yarn': 'false', 'path': './tests/package-test.json',
+            'ignore': '[ "@types/jest", "jest", "jest-circus", "ts-jest" ]'
+          },
+          {
+            'yarn': 'true', 'path': './tests/package-test.json',
+            'ignore': '[ "@types/jest", "jest", "jest-circus", "ts-jest" ]'
+          }
         ]
 
     runs-on: ubuntu-latest
@@ -72,13 +97,10 @@ jobs:
         yarn: ${{ matrix.args.yarn }}
         debug: true
         path: ${{ env.PKG_JSON }}
+        ignore: |
+          ${{ matrix.args.ignore }}
 
     - name: verify test result
       env:
         LOCK_FILE: ${{ env.LOCK_FILE }}
-      run: |
-        test -e "${LOCK_FILE}" || exit 1 && \
-        pkg_json=$(cat ${{ env.PKG_JSON }}) && \
-        echo "${pkg_json}" && \
-        test $(echo "${pkg_json}" | jq -cr ".devDependencies.typescript") != '^4.3.2' || exit 1  && \
-        test $(echo "${pkg_json}" | jq -cr ".dependencies.jest") != '26.6.3' || exit 1
+      run: test -e "${LOCK_FILE}" || exit 1
