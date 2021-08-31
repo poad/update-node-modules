@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: enable auto merge test (for Pull request)
-      if: github.event_name == 'pull_request'
+      if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
       env:
         GITHUB: $${{  toJSON(github) }}
       uses: poad/github-pull-request-auto-merge-enable-action@v1.0.0
