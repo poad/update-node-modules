@@ -25,7 +25,7 @@
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-flowtype": "^6.1.0",
     "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-jest": "^25.0.4",
+    "eslint-plugin-jest": "^25.0.5",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.2.5",
     "jest-circus": "^27.2.5",
