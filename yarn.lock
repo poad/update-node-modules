@@ -2399,6 +2399,14 @@ jest-mock@^27.3.0:
     "@jest/types" "^27.2.5"
     "@types/node" "*"
 
+jest-mock@^27.3.0:
+  version "27.3.0"
+  resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-27.3.0.tgz#ddf0ec3cc3e68c8ccd489bef4d1f525571a1b867"
+  integrity sha512-ziZiLk0elZOQjD08bLkegBzv5hCABu/c8Ytx45nJKkysQwGaonvmTxwjLqEA4qGdasq9o2I8/HtdGMNnVsMTGw==
+  dependencies:
+    "@jest/types" "^27.2.5"
+    "@types/node" "*"
+
 jest-pnp-resolver@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/jest-pnp-resolver/-/jest-pnp-resolver-1.2.2.tgz#b704ac0ae028a89108a4d040b3f919dfddc8e33c"
@@ -2461,6 +2469,38 @@ jest-runner@^27.2.5, jest-runner@^27.3.0:
     jest-worker "^27.3.0"
     source-map-support "^0.5.6"
     throat "^6.0.1"
+
+jest-runtime@^27.3.0:
+  version "27.3.0"
+  resolved "https://registry.yarnpkg.com/jest-runtime/-/jest-runtime-27.3.0.tgz#6957699d74a675441f50627bca9fe8b035c82b83"
+  integrity sha512-CRhIM45UlYVY2u5IfCx+0jsCm6DLvY9fz34CzDi3c4W1prb7hGKLOJlxbayQIHHMhUx22WhK4eRqXjOKDnKdAQ==
+  dependencies:
+    "@jest/console" "^27.3.0"
+    "@jest/environment" "^27.3.0"
+    "@jest/globals" "^27.3.0"
+    "@jest/source-map" "^27.0.6"
+    "@jest/test-result" "^27.3.0"
+    "@jest/transform" "^27.3.0"
+    "@jest/types" "^27.2.5"
+    "@types/yargs" "^16.0.0"
+    chalk "^4.0.0"
+    cjs-module-lexer "^1.0.0"
+    collect-v8-coverage "^1.0.0"
+    execa "^5.0.0"
+    exit "^0.1.2"
+    glob "^7.1.3"
+    graceful-fs "^4.2.4"
+    jest-haste-map "^27.3.0"
+    jest-message-util "^27.3.0"
+    jest-mock "^27.3.0"
+    jest-regex-util "^27.0.6"
+    jest-resolve "^27.3.0"
+    jest-snapshot "^27.3.0"
+    jest-util "^27.3.0"
+    jest-validate "^27.3.0"
+    slash "^3.0.0"
+    strip-bom "^4.0.0"
+    yargs "^16.2.0"
 
 jest-runtime@^27.3.0:
   version "27.3.0"
@@ -2600,6 +2640,15 @@ jest-watcher@^27.3.0:
     chalk "^4.0.0"
     jest-util "^27.3.0"
     string-length "^4.0.1"
+
+jest-worker@^27.3.0:
+  version "27.3.0"
+  resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-27.3.0.tgz#6b636b63b6672208b91b92d8dcde112d1d4dba2d"
+  integrity sha512-xTTvvJqOjKBqE1AmwDHiQN8qzp9VoT981LtfXA+XiJVxHn4435vpnrzVcJ6v/ESiuB+IXPjZakn/ppT00xBCWA==
+  dependencies:
+    "@types/node" "*"
+    merge-stream "^2.0.0"
+    supports-color "^8.0.0"
 
 jest-worker@^27.3.0:
   version "27.3.0"
