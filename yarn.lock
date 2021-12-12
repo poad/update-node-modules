@@ -407,7 +407,7 @@
     slash "^3.0.0"
     strip-ansi "^6.0.0"
 
-"@jest/environment@^27.4.2", "@jest/environment@^27.4.4":
+"@jest/environment@^27.4.4":
   version "27.4.4"
   resolved "https://registry.yarnpkg.com/@jest/environment/-/environment-27.4.4.tgz#66ebebc79673d84aad29d2bb70a8c51e6c29bb4d"
   integrity sha512-q+niMx7cJgt/t/b6dzLOh4W8Ef/8VyKG7hxASK39jakijJzbFBGpptx3RXz13FFV7OishQ9lTbv+dQ5K3EhfDQ==
@@ -2110,31 +2110,6 @@ jest-changed-files@^27.4.2:
     execa "^5.0.0"
     throat "^6.0.1"
 
-jest-circus@^27.4.2:
-  version "27.4.2"
-  resolved "https://registry.yarnpkg.com/jest-circus/-/jest-circus-27.4.2.tgz#466f482207ca9f323b78416c28f4d1fa7588159a"
-  integrity sha512-2ePUSru1BGMyzxsMvRfu+tNb+PW60rUyMLJBfw1Nrh5zC8RoTPfF+zbE0JToU31a6ZVe4nnrNKWYRzlghAbL0A==
-  dependencies:
-    "@jest/environment" "^27.4.2"
-    "@jest/test-result" "^27.4.2"
-    "@jest/types" "^27.4.2"
-    "@types/node" "*"
-    chalk "^4.0.0"
-    co "^4.6.0"
-    dedent "^0.7.0"
-    expect "^27.4.2"
-    is-generator-fn "^2.0.0"
-    jest-each "^27.4.2"
-    jest-matcher-utils "^27.4.2"
-    jest-message-util "^27.4.2"
-    jest-runtime "^27.4.2"
-    jest-snapshot "^27.4.2"
-    jest-util "^27.4.2"
-    pretty-format "^27.4.2"
-    slash "^3.0.0"
-    stack-utils "^2.0.3"
-    throat "^6.0.1"
-
 jest-circus@^27.4.4:
   version "27.4.4"
   resolved "https://registry.yarnpkg.com/jest-circus/-/jest-circus-27.4.4.tgz#8bf89aa604b914ecc10e3d895aae283b529f965d"
@@ -2412,7 +2387,7 @@ jest-runner@^27.4.4:
     source-map-support "^0.5.6"
     throat "^6.0.1"
 
-jest-runtime@^27.4.2, jest-runtime@^27.4.4:
+jest-runtime@^27.4.4:
   version "27.4.4"
   resolved "https://registry.yarnpkg.com/jest-runtime/-/jest-runtime-27.4.4.tgz#0d486735e8a1c8bbcdbb9285b3155ed94c5e3670"
   integrity sha512-tZGay6P6vXJq8t4jVFAUzYHx+lzIHXjz+rj1XBk6mAR1Lwtf5kz0Uun7qNuU+oqpZu4+hhuxpUfXb6j30bEPqA==
@@ -2452,7 +2427,7 @@ jest-serializer@^27.4.0:
     "@types/node" "*"
     graceful-fs "^4.2.4"
 
-jest-snapshot@^27.4.2, jest-snapshot@^27.4.4:
+jest-snapshot@^27.4.4:
   version "27.4.4"
   resolved "https://registry.yarnpkg.com/jest-snapshot/-/jest-snapshot-27.4.4.tgz#fc0a2cd22f742fe66621c5359c9cd64f88260c6b"
   integrity sha512-yy+rpCvYMOjTl7IMuaMI9OP9WT229zi8BhdNHm6e6mttAOIzvIiCxFoZ6yRxaV3HDPPgMryi+ReX2b8+IQJdPA==
