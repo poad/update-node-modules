@@ -31,7 +31,7 @@ jobs:
   build-lint:
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x]
 
     runs-on: ubuntu-latest
 
@@ -53,7 +53,7 @@ jobs:
   action-test:
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [ 14.x, 16.x]
         args: [
           {
             'yarn': 'false', 'path': './tests/package-test.json', 'ignore': '[]'

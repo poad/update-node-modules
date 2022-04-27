@@ -52,11 +52,11 @@ describe('Update NPM modules', () => {
 
     const { devDependencies, peerDependencies } = pkgJson;
 
-    expect(devDependencies['@types/jest']).not.toBe("26.0.13");
+    expect(devDependencies['@types/jest']).not.toBe("27.4.0");
     expect(devDependencies['@types/node']).not.toBe("^15.12.2");
     expect(peerDependencies['@actions/core']).not.toBe("^1.0.0");
-    expect(peerDependencies['jest']).not.toBe("26.6.3");
-    expect(peerDependencies['ts-jest']).not.toBe("26.5.5");
+    expect(peerDependencies['jest']).not.toBe("27.5.1");
+    expect(peerDependencies['ts-jest']).not.toBe("27.1.0");
     expect(peerDependencies['react-vnc']).not.toBe("0.1.16");
   });
 
@@ -84,11 +84,11 @@ describe('Update NPM modules', () => {
     const pkgJson = JSON.parse(fs.readFileSync(tmpFile).toString());
     const { devDependencies, dependencies, peerDependencies, optionalDependencies } = pkgJson;
 
-    expect(devDependencies['@types/jest']).not.toBe("26.0.13");
+    expect(devDependencies['@types/jest']).not.toBe("27.4.0");
     expect(devDependencies['@types/node']).not.toBe("^15.12.2");
     expect(dependencies['@actions/core']).not.toBe("^1.0.0");
-    expect(dependencies['jest']).not.toBe("26.6.3");
-    expect(dependencies['ts-jest']).not.toBe("26.5.5");
+    expect(peerDependencies['jest']).not.toBe("27.5.1");
+    expect(peerDependencies['ts-jest']).not.toBe("27.1.0");
     expect(peerDependencies['@octokit/core']).not.toBe("^3.5.0");
     expect(peerDependencies['@octokit/plugin-request-log']).not.toBe("1.0.0");
     expect(optionalDependencies['react-vnc']).not.toBe("0.1.16");
@@ -125,11 +125,11 @@ describe('Update NPM modules', () => {
     const version = Number(process.version.split('.')[0].replace('v', ''))
     console.log(version);
 
-    expect(devDependencies['@types/jest']).toBe("26.0.13");
+    expect(devDependencies['@types/jest']).toBe("27.4.0");
     expect(devDependencies['@types/node']).not.toBe("^15.12.2");
     expect(dependencies['@actions/core']).not.toBe("^1.0.0");
-    expect(dependencies['jest']).toBe("26.6.3");
-    expect(dependencies['ts-jest']).toBe("26.5.5");
+    expect(dependencies['jest']).toBe("27.5.1");
+    expect(dependencies['ts-jest']).toBe("27.1.0");
     if (version <= 14) {
       expect(peerDependencies['@octokit/core']).toBe("^3.5.0");
     } else {
@@ -166,11 +166,11 @@ describe('Update NPM modules', () => {
 
     const { devDependencies, dependencies, peerDependencies, optionalDependencies } = pkgJson;
 
-    expect(devDependencies['@types/jest']).toBe("26.0.13");
+    expect(devDependencies['@types/jest']).toBe("27.4.0");
     expect(devDependencies['@types/node']).not.toBe("^15.12.2");
     expect(dependencies['@actions/core']).not.toBe("^1.0.0");
-    expect(dependencies['jest']).toBe("26.6.3");
-    expect(dependencies['ts-jest']).toBe("26.5.5");
+    expect(dependencies['jest']).toBe("27.5.1");
+    expect(dependencies['ts-jest']).toBe("27.1.0");
     expect(peerDependencies['@octokit/core']).not.toBe("^3.5.0");
     expect(peerDependencies['@octokit/plugin-request-log']).not.toBe("1.0.0");
     expect(optionalDependencies['@octokit/core']).not.toBe("^3.5.0");
