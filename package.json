@@ -10,7 +10,8 @@
     "build": "yarn clean && yarn lint --fix && tsc --project tsconfig-app.json",
     "lint": "eslint src/**/*.ts src/*.ts",
     "test": "NODE_ENV=test node --unhandled-rejections=strict --experimental-modules node_modules/.bin/jest --coverage --passWithNoTests --detectOpenHandles",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "postinstall": "yarn build"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
