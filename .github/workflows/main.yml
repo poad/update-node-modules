@@ -48,6 +48,7 @@ jobs:
         yarn install
         yarn lint --fix
         yarn build
+        yarn package
         yarn test
 
   action-test:
