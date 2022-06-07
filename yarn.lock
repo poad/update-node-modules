@@ -752,15 +752,10 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
 
-"@types/node@*":
+"@types/node@*", "@types/node@^17.0.40":
   version "17.0.41"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.41.tgz#1607b2fd3da014ae5d4d1b31bc792a39348dfb9b"
   integrity sha512-xA6drNNeqb5YyV5fO3OAEsnXLfO7uF0whiOfPTz5AeDo8KeZFmODKnvwPymMNO8qE/an8pVY/O50tig2SQCrGw==
-
-"@types/node@^17.0.40":
-  version "17.0.40"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.40.tgz#76ee88ae03650de8064a6cf75b8d95f9f4a16090"
-  integrity sha512-UXdBxNGqTMtm7hCwh9HtncFVLrXoqA3oJW30j6XWp5BH/wu3mVeaxo7cq5benFdBw34HB3XDT2TRPI7rXZ+mDg==
 
 "@types/prettier@^2.1.5":
   version "2.6.3"
@@ -991,9 +986,9 @@ babel-plugin-istanbul@^6.1.1:
     test-exclude "^6.0.0"
 
 babel-plugin-jest-hoist@^28.0.2:
-  version "28.0.2"
-  resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-28.0.2.tgz#9307d03a633be6fc4b1a6bc5c3a87e22bd01dd3b"
-  integrity sha512-Kizhn/ZL+68ZQHxSnHyuvJv8IchXD62KQxV77TBDV/xoBFBOfgRAk97GNs6hXdTTCiVES9nB2I6+7MXXrk5llQ==
+  version "28.1.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-28.1.1.tgz#5e055cdcc47894f28341f87f5e35aad2df680b11"
+  integrity sha512-NovGCy5Hn25uMJSAU8FaHqzs13cFoOI4lhIujiepssjCKRsAo3TA734RDWSGxuFTsUJXerYOqQQodlxgmtqbzw==
   dependencies:
     "@babel/template" "^7.3.3"
     "@babel/types" "^7.3.3"
@@ -2310,15 +2305,7 @@ jest-message-util@^28.1.0, jest-message-util@^28.1.1:
     slash "^3.0.0"
     stack-utils "^2.0.3"
 
-jest-mock@^28.1.0:
-  version "28.1.0"
-  resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-28.1.0.tgz#ccc7cc12a9b330b3182db0c651edc90d163ff73e"
-  integrity sha512-H7BrhggNn77WhdL7O1apG0Q/iwl0Bdd5E1ydhCJzL3oBLh/UYxAwR3EJLsBZ9XA3ZU4PA3UNw4tQjduBTCTmLw==
-  dependencies:
-    "@jest/types" "^28.1.0"
-    "@types/node" "*"
-
-jest-mock@^28.1.1:
+jest-mock@^28.1.0, jest-mock@^28.1.1:
   version "28.1.1"
   resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-28.1.1.tgz#37903d269427fa1ef5b2447be874e1c62a39a371"
   integrity sha512-bDCb0FjfsmKweAvE09dZT59IMkzgN0fYBH6t5S45NoJfd2DHkS3ySG2K+hucortryhO3fVuXdlxWcbtIuV/Skw==
