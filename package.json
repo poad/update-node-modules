@@ -15,7 +15,7 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@jest/globals": "^29.0.2",
+    "@jest/globals": "^29.0.3",
     "@types/jest": "^28.1.8",
     "@types/node": "^18.7.16",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
