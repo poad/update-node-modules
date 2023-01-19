@@ -44,7 +44,8 @@
     "@actions/core": "*"
   },
   "resolutions": {
-    "json5": ">=2.2.3"
+    "json5": ">=2.2.3",
+    "semver-regex": ">=3.1.3"
   },
   "exports": {
     ".": {
