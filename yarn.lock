@@ -3167,19 +3167,7 @@ jest-util@*, jest-util@^29.3.1, jest-util@^29.4.0:
     graceful-fs "^4.2.9"
     picomatch "^2.2.3"
 
-jest-validate@^29.3.1:
-  version "29.3.1"
-  resolved "https://registry.yarnpkg.com/jest-validate/-/jest-validate-29.3.1.tgz#d56fefaa2e7d1fde3ecdc973c7f7f8f25eea704a"
-  integrity sha512-N9Lr3oYR2Mpzuelp1F8negJR3YE+L1ebk1rYA5qYo9TTY3f9OWdptLoNSPP9itOCBIRBqjt/S5XHlzYglLN67g==
-  dependencies:
-    "@jest/types" "^29.3.1"
-    camelcase "^6.2.0"
-    chalk "^4.0.0"
-    jest-get-type "^29.2.0"
-    leven "^3.1.0"
-    pretty-format "^29.3.1"
-
-jest-validate@^29.4.0:
+jest-validate@^29.3.1, jest-validate@^29.4.0:
   version "29.4.0"
   resolved "https://registry.yarnpkg.com/jest-validate/-/jest-validate-29.4.0.tgz#5090be16531051edc21bc0892553f7f7fab99bf0"
   integrity sha512-EXS7u594nX3aAPBnARxBdJ1eZ1cByV6MWrK0Qpt9lt/BcY0p0yYGp/EGJ8GhdLDQh+RFf8qMt2wzbbVzpj5+Vg==
