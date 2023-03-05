@@ -42,7 +42,8 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@actions/core": "*"
+    "@actions/core": "*",
+    "got": ">=11.8.5"
   },
   "resolutions": {
     "got": ">=11.8.5",
