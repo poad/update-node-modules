@@ -126,11 +126,11 @@
   integrity sha512-0WDaIlXKOX/3KfBK/dwP1oQGiPh6rjMkT7HIRv7i5RR2VUMwrx5ZL0dwBkKx7+SW1zwNdgjHd34IMk5ZjTeHVg==
 
 "@babel/helper-simple-access@^7.20.2":
-  version "7.20.2"
-  resolved "https://registry.yarnpkg.com/@babel/helper-simple-access/-/helper-simple-access-7.20.2.tgz#0ab452687fe0c2cfb1e2b9e0015de07fc2d62dd9"
-  integrity sha512-+0woI/WPq59IrqDYbVGfshjT5Dmk/nnbdpcF8SnMhhXObpTq2KNBdLFRFrkVdbDOyUmHBCxzm5FHV1rACIkIbA==
+  version "7.21.5"
+  resolved "https://registry.yarnpkg.com/@babel/helper-simple-access/-/helper-simple-access-7.21.5.tgz#d697a7971a5c39eac32c7e63c0921c06c8a249ee"
+  integrity sha512-ENPDAMC1wAjR0uaCUwliBdiSl1KBJAVnMTzXqi64c2MG8MPR6ii4qf7bSXDqSFbr4W6W028/rf5ivoHop5/mkg==
   dependencies:
-    "@babel/types" "^7.20.2"
+    "@babel/types" "^7.21.5"
 
 "@babel/helper-split-export-declaration@^7.18.6":
   version "7.18.6"
@@ -305,7 +305,7 @@
     debug "^4.1.0"
     globals "^11.1.0"
 
-"@babel/types@^7.0.0", "@babel/types@^7.18.6", "@babel/types@^7.20.2", "@babel/types@^7.20.7", "@babel/types@^7.21.0", "@babel/types@^7.21.2", "@babel/types@^7.21.4", "@babel/types@^7.3.0", "@babel/types@^7.3.3":
+"@babel/types@^7.0.0", "@babel/types@^7.18.6", "@babel/types@^7.20.7", "@babel/types@^7.21.0", "@babel/types@^7.21.2", "@babel/types@^7.21.4", "@babel/types@^7.3.0", "@babel/types@^7.3.3":
   version "7.21.4"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.21.4.tgz#2d5d6bb7908699b3b416409ffd3b5daa25b030d4"
   integrity sha512-rU2oY501qDxE8Pyo7i/Orqma4ziCOrby0/9mvbDUGEfvZjb279Nk9k19e2fiCxHbRRpY2ZyrgW1eq22mvmOIzA==
