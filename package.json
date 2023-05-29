@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@actions/core": "*",
-    "got": ">=11.8.5"
+    "got": ">=13.0.0"
   },
   "resolutions": {
     "got": ">=11.8.5",
