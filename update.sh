@@ -20,7 +20,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-pnpm install && pnpm up && rm -rf dist && pnpm build && pnpm package && rm -rf node_modules && pnpm install --production && git add node_modules -f
+pnpm install && pnpm up && rm -rf dist && pnpm build && pnpm package && rm -rf node_modules && pnpm install --production && git add node_modules dist -f
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}"
