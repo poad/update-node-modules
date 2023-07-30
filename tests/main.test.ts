@@ -2,10 +2,10 @@ import * as fs from 'fs';
 import * as process from 'process';
 import * as cp from 'child_process';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 import {
   describe, beforeEach, afterAll, expect, test,
 } from '@jest/globals';
-import { fileURLToPath } from 'url';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 

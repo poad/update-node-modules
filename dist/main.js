@@ -1,7 +1,7 @@
-import * as core from '@actions/core';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as childProcess from 'child_process';
+import * as core from '@actions/core';
 const optionMap = {
     npm: {
         install: {
