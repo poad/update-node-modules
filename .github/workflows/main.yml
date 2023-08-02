@@ -1,7 +1,7 @@
 name: Test
 
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - main
   push:
@@ -11,26 +11,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  configure:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: enable auto merge test (for Pull request)
-      if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
-      env:
-        GITHUB: $${{  toJSON(github) }}
-      uses: poad/github-pull-request-auto-merge-enable-action@v1.0.5
-      with:
-        pull_request_number: ${{ github.event.pull_request.number }}
-        github_token: ${{ secrets.PERSONAL_TOKEN_FOR_GITHUB_ACTIONS }}
-        repository:  ${{ github.event.repository.name }}
-        owner: ${{ github.repository_owner }}
-        merge_method: SQUASH
-
   build-lint:
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     runs-on: ubuntu-latest
 
@@ -41,7 +25,7 @@ jobs:
       name: Install pnpm
       id: pnpm-install
       with:
-        version: 8.6.3
+        version: 8.6.11
         run_install: |
           - recursive: true
             args: [--no-frozen-lockfile]
