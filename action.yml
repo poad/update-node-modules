@@ -18,5 +18,5 @@ inputs:
     description: (Optional) ignore update module names type
     default: '[]'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
