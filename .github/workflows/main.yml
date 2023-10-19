@@ -45,7 +45,7 @@ jobs:
   action-test:
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [20.x]
         args: [
           {
             'yarn': 'false', 'path': './tests/package-test.json', 'ignore': '[]'
@@ -74,28 +74,29 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: prepare
+      id: prepare
       run: |
         TEMP=$(mktemp -d);
         PKG_JSON=${TEMP}/package.json
         cp -pR ${{ matrix.args.path }} ${PKG_JSON}
         echo "TEMP=${TEMP}" >> $GITHUB_ENV
-        echo "PKG_JSON=${PKG_JSON}" >> $GITHUB_ENV
+        echo "PKG_JSON=${PKG_JSON}" >> "$GITHUB_OUTPUT"
         lock_file=package-lock.json
         if [ ${{ matrix.args.yarn }} = 'true' ]; then
           lock_file=yarn.lock
         fi
-        echo "LOCK_FILE=${TEMP}/${lock_file}" >> $GITHUB_ENV
+        echo "LOCK_FILE=${TEMP}/${lock_file}" >> "$GITHUB_OUTPUT"
 
     - name: update and test
       uses: './'
       with:
         yarn: ${{ matrix.args.yarn }}
         debug: true
-        path: ${{ env.PKG_JSON }}
+        path: ${{ steps.prepare.outputs.PKG_JSON }}
         ignore: |
           ${{ matrix.args.ignore }}
 
     - name: verify test result
       env:
-        LOCK_FILE: ${{ env.LOCK_FILE }}
-      run: test -e "${LOCK_FILE}" || exit 1
+        LOCK_FILE: ${{ steps.prepare.outputs.LOCK_FILE }}
+      run: test -e "${{ steps.prepare.outputs.LOCK_FILE }}" || exit 1

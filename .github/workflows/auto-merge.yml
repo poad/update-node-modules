@@ -8,7 +8,6 @@ permissions:
   id-token: write
   contents: read
 
-
 jobs:
   configure:
     runs-on: ubuntu-latest
@@ -19,7 +18,7 @@ jobs:
       uses: poad/github-pull-request-auto-merge-enable-action@v1.0.5
       with:
         pull_request_number: ${{ github.event.pull_request.number }}
-        github_token: ${{ secrets.PERSONAL_TOKEN_FOR_GITHUB_ACTIONS }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         repository: ${{ github.event.repository.name }}
         owner: ${{ github.repository_owner }}
         merge_method: SQUASH
